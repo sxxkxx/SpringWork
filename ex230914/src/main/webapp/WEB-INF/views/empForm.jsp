@@ -65,7 +65,7 @@
 			Event Object
 			- 메소드
 			1) preventDefault() : 해당 이벤트에 기본으로 설정된 동작을 막음.
-			2) stopPropagation() : 이벤트 버블링을 막음.
+			2) stopPropagation() : 이벤트 버블링(자식이 부모에게 이벤트 전파)을 막음.
 			
 			- 필드
 			1) target
