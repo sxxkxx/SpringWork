@@ -65,7 +65,13 @@ public class EmpMapperTest {
 		empVO.setSalary(6000);
 		int result = empMapper.updateEmpInfo(empVO);
 		assertEquals(result, 1);
-		
 	}
+	@Test
+	public void deleteEmpInfo() {
+		int result = empMapper.deleteEmpInfo(4322);
+		assertEquals(result, 1);
+	}
+	
+	
 	
 }
