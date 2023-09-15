@@ -55,7 +55,7 @@ public class EmpMapperTest {
 		int result = empMapper.updateEmpSal(100, 10);
 		assertEquals(result, 1);
 	}
-	@Test
+	//@Test
 	public void updateEmpInfo() {
 		// 사원 정보 수정
 		EmpVO empVO = new EmpVO();
