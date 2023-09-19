@@ -10,7 +10,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-<p>${result}</p>
+	<button type="button">선택삭제</button>
 	<table border="1">
 		<thead>
 			<tr>
@@ -62,6 +62,61 @@
 			//let empId = $(e.currentTarget).find('td:eq(1)').text(); 인덱스1번
 			location.href = 'empInfo?employeeId=' + empId;
 		});
+		
+		// 단건 삭제
+		$('tr button').on('click', empInfoDel)
+		
+		function empInfoDel(event){
+			let trTag = $(event.currentTarget).closest('tr');
+			let empId = $(trTag).children().eq(1).text();
+
+			$.ajax('empDelete?employeeId='+empId)
+			.done(result => {
+				console.log(result);
+				//$(trTag).remove();
+				let deleteId = result.list[0];
+				$('tbody > tr > td:nth-of-type(2)').each(function(idx, tag){
+					if($(tag).text() == deleteId){
+						$(tag).parent().remove();
+					}
+				})
+			})
+			.fail(reject => console.log(reject));
+		}
+		// 선택 삭제
+		$('button:eq(0)').on('click', empListDelete);
+
+		function empListDelete(event){
+			// 선택한 사원번호를 가지는 배열
+			let empIdList = getEmpList();
+
+			// ajax
+			$.ajax('empDelete',{
+				type : 'post',
+				contentType : 'application/json',
+				data : JSON.stringify(empIdList)
+			})
+			.done(result => {
+				if(result){
+					location.href='empList'; // 배열을 보낼 때 사용 but 극히 드문경우, 쓰면 욕먹음
+				}
+				 // 자바스크립트는 리턴 데이터 유형 구분해야함, ajax jquery는 상관없음
+			})
+			.fail(reject => console.log(reject));
+		}
+
+		function getEmpList(){
+			let checkTag = $('tbody input[type="checkbox"]:checked');
+
+			let empList = [];
+			checkTag.each(function(idx, inTag){
+				let empId = $(inTag).parent().next().text();
+				empList.push(empId);
+			});
+
+			return empList;
+		}
+
 	</script>
 </body>
 </html>
