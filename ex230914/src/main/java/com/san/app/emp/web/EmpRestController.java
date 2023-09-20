@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.san.app.emp.service.EmpService;
 import com.san.app.emp.service.EmpVO;
 
-import lombok.Delegate;
-
 @RestController
 public class EmpRestController {
 	@Autowired
@@ -57,7 +55,5 @@ public class EmpRestController {
 		list.add(empId);
 		return empService.deleteEmp(list);
 	}
-		
-	
-	
+			
 }

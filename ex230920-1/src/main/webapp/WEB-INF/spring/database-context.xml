@@ -8,16 +8,15 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-
 	<context:property-placeholder
 		location="classpath:config/db.properties" />
 
 	<!-- datasource connection pool -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
-		<property name="driverClassName" value="${driver}" />
-		<property name="jdbcUrl" value="${url}" />
+		<property name="driverClassName" value="${driverName}" />
+		<property name="jdbcUrl" value="${dbUrl}" />
 		<property name="username" value="${id}" />
-		<property name="password" value="${password}" />
+		<property name="password" value="${pwd}" />
 	</bean>
 
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
@@ -29,23 +28,18 @@
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation"
-			value="classpath:/config/mybatis-config.xml" />
-		<!-- 컴파일 후의 경로 classpath*:com/san/app/**/mapper/*.xml -->
+			value="classpath:config/mybatis-config.xml" />
 		<property name="mapperLocations"
-			value="classpath*:com/san/app/**/mapper/*-mapper.xml" />
+			value="classpath*:com/yedam/app/**/mapper/*-mapper.xml" />
 	</bean>
 
-	<!-- mapper scan(interface만 스캔) -->
 	<mybatis-spring:scan
-		base-package="com.san.app.**.mapper" />
+		base-package="com.yedam.app.**.mapper" />
 
 	<!-- Transaction Manager 설정 -->
-	<bean id="txManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
-	<!-- 트랜잭션 빈에 등록 -->
 	<tx:annotation-driven/>
-	
 </beans>
