@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- DB의 표기법(snake_case) to java의 표기법(camelCase) -->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<!-- java의 null -> java에서 인식 방법 설정 (NULL, VARCHAR and OTHER) -->
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	<typeAliases>
+		<!-- 클래스명 = 별칭으로 인식, 클래스명 중복 ㄴㄴ -->
+		<package name="com.san.exam"/>
+	</typeAliases>
+		
+	<!-- java와 DB의 data type이 다를 시 대응 -->
+	<typeHandlers>
+		<!-- java.sql.Timestamp to java.util.Date (날짜변환)-->
+		<typeHandler javaType="java.sql.Date" handler="org.apache.ibatis.type.DateTypeHandler"/>
+	</typeHandlers>
+</configuration>

@@ -36,7 +36,7 @@
 			SELECT LPAD(NVL(MAX(bno), 0) + 1, 3,'0')
 			FROM tbl_board
 		</selectKey>
-		INSERT INTO(
+		INSERT INTO tbl_board(
 			bno
 			, title
 			, contents
@@ -88,7 +88,8 @@
 	<!-- 삭제 -->
 	<delete id="deleteBoard">
 		DELETE FROM tbl_board
-		WHERE bno = #{bno}
+		WHERE TO_NUMBER(bno) = #{bno} <!-- (1)=(2) -->
+		<!-- (2) WHERE bno = LPAD(#{bno}, 3,'0') -->
 	</delete>
 
 </mapper>

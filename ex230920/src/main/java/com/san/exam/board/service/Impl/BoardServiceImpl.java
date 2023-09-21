@@ -11,6 +11,7 @@ import com.san.exam.board.service.BoardVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
+	
 	@Autowired
 	BoardMapper boardMapper;
 	
@@ -27,20 +28,24 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int insertBoardInfo(BoardVO boardVO) {
-
-		return boardMapper.insertBoard(boardVO);
+		int result = boardMapper.insertBoard(boardVO);
+		if(result == 1) {
+			return Integer.valueOf(boardVO.getBno());
+		}else {
+			return -1;
+		}
 	}
 
 	@Override
 	public int updateBoardInfo(BoardVO boardVO) {
-
-		return boardMapper.updateBoard(boardVO);
+		return boardMapper.updateBoard(boardVO) == 1 ? Integer.valueOf(boardVO.getBno()) : -1;
+		// 3항 연산자 - 조건식 ? true : false ;
 	}
 
 	@Override
 	public int deleteBoardInfo(int boardNo) {
-
-		return boardMapper.deleteBoard(boardNo);
+		int result = boardMapper.deleteBoard(boardNo);
+		return result == 1 ? boardNo : -1;
 	}
 
 }

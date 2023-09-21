@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
@@ -30,22 +30,22 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation"
 			value="classpath:/config/mybatis-config.xml" />
-		<!-- 컴파일 후의 경로 classpath*:com/san/exam/**/mapper/*.xml -->
+		<!-- 컴파일 후의 경로 classpath*:com/exam/app/**/map/*.xml -->
 		<property name="mapperLocations"
-			value="classpath*:com/san/exam/**/mapper/*-mapper.xml" />
+			value="classpath*:com/san/exam/**/map/*-mapper.xml" />
 	</bean>
 
 	<!-- mapper scan(interface만 스캔) -->
 	<mybatis-spring:scan
-		base-package="com.san.exam.**.mapper" />
+		base-package="com.san.exam.**.map" />
 
 	<!-- Transaction Manager 설정 -->
 	<bean id="txManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-
+	
 	<!-- 트랜잭션 빈에 등록 -->
-	<tx:annotation-driven />
-
+	<tx:annotation-driven/>
+	
 </beans>
