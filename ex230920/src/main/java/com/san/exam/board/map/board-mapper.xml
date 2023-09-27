@@ -82,6 +82,7 @@
 			<if test='image != null'>
 				, image = #{image}
 			</if>
+			WHERE bno = #{bno}
 		</set>
 	</update>
 	

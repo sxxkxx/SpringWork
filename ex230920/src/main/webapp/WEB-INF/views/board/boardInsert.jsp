@@ -27,7 +27,7 @@
 				<td><input type="text" name=""></td>
 			</tr>
 		</table>
-		<button type="button">목록</button>
+		<button type="button" onclick="location.href='boardList'">목록</button>
 		<button type="submit">등록</button>
 	</form>
 	<script type="text/javascript">
@@ -51,6 +51,7 @@
 
             alert('게시글이 등록되었습니다.')
             insertForm.submit();
+            // form 태크에서만 name을 변수처럼 사용가능
         })
 	</script>
 </body>

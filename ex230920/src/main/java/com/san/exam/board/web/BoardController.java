@@ -1,4 +1,4 @@
-package com.san.exam.web;
+package com.san.exam.board.web;
 
 import java.util.HashMap;
 import java.util.List;
@@ -72,7 +72,7 @@ public class BoardController {
 																					// ajax, 아닐시 QueryString 사용
 		Map<String, Object> map = new HashMap<>();
 		int result = boardService.updateBoardInfo(boardVO);
-
+		System.out.println(result);
 		if (result > -1) {
 			map.put("result", true);
 			map.put("bno", result);
@@ -87,5 +87,6 @@ public class BoardController {
 	public String boardDelete(@RequestParam Integer bno) {
 		boardService.deleteBoardInfo(bno);
 		return "redirect:boardList";
+		// 컨트롤러를 실행
 	}
 }

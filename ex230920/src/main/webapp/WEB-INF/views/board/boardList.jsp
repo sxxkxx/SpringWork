@@ -37,13 +37,7 @@
 		</tbody>
 	</table>
 	<script type="text/javascript">
-		// document.querySelector('tbody > tr').forEach(function(tag){
-		// 	tag.addEventListener('click', function(e) {
-		// 		let bno = e.currentTarget.firstElementChild.textContent;
-
-		// 		location.href = 'boradInfo?bno=' + bno;
-		// 	});
-		// });
+	
 
 		$('tbody > tr').each(function(idx, tag){
 			tag.addEventListener('click', function(e) {

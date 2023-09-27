@@ -58,7 +58,7 @@
 			data : JSON.stringify(objData)
 		})
 		.done(result =>{ // success, done은 연속적으로 사용가능(done종료 후 다른 done), javascript의 then과 동일
-			let message = '결과 : '+ result['결과']+', 대상 사원번호 : '+result['사원번호'];
+			let message = '결과 : '+ result['result']+', 대상 글번호 : '+result['bno'];
 			alert(message);
 		})
 		.fail(reject => console.log(reject)); // error

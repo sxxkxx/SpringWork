@@ -8,6 +8,7 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<context:property-placeholder location="classpath:appInfo.properties"/>
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
@@ -15,6 +16,7 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${web
 Root}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	<resources location="${file.loading.path}" mapping="/images/**"></resources>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
@@ -44,6 +46,7 @@ Root}/resources directory -->
 	
 	<context:component-scan base-package="com.san.exam" />
 	
-	
+	<!-- FormData 사용시 multipartResolver 필수!!! -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
 	
 </beans:beans>

@@ -38,7 +38,14 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public int updateBoardInfo(BoardVO boardVO) {
-		return boardMapper.updateBoard(boardVO) == 1 ? Integer.valueOf(boardVO.getBno()) : -1;
+		int result = boardMapper.updateBoard(boardVO);
+		System.out.println(result);
+		if(result != 0) {
+			return Integer.valueOf(boardVO.getBno());
+		}else {
+			return -1;
+		}
+		//return boardMapper.updateBoard(boardVO) == 1 ? Integer.valueOf(boardVO.getBno()) : -1;
 		// 3항 연산자 - 조건식 ? true : false ;
 	}
 
