@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<div>
+			<label id="empId">사원번호</label> <input type="text" id="empId"
+				readonly="readonly" th:value="${empInfo.employeeId}">
+		</div>
+		<div>
+			<label id="name">이름</label> <input type="text" id="name"
+				readonly="readonly"
+				th:value="${#strings.isEmpty(empInfo.firstName) ? empInfo.lastName : empInfo.firstName + ' ' + empInfo.lastName}">
+		</div>
+		<div>
+			<label id="email">이메일</label> <input type="text" id="email"
+				readonly="readonly" th:value="${empInfo.email}">
+		</div>
+		<div>
+			<label id="hireDate">입사일</label> <input type="text" id="hireDate"
+				readonly="readonly"
+				th:value="${#dates.format(empInfo.hireDate, 'yyyy-MM-dd')}">
+		</div>
+		<div>
+			<label id="jobId">업무</label> <input type="text" id="jobId"
+				readonly="readonly" th:value="${empInfo.jobId}">
+		</div>
+		<div>
+			<button type="button" th:onclick="|location.href='@{/empList}'|">목록</button>
+		</div>
+	</div>
+</body>
+</html>
